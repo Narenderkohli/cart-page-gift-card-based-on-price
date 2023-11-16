@@ -1,0 +1,75 @@
+var url =$(location).attr('href');
+
+if ($(".cart-mainp").hasClass("is-not-empty") && url == 'https://b68de9.myshopify.com/cart') {
+
+var cart_price = $(".totals__total-value").attr("total");
+var max_price = "$3,000.00 USD"
+if (cart_price > max_price){
+$.ajax({
+type: 'POST',
+url: '/cart/add.js',
+data: {
+quantity:1,
+id: 40823093592125
+},
+dataType: 'json',
+success: function() {
+location.href = '/cart';
+}
+});
+}
+else{
+$.ajax({
+type: 'POST',
+url: '/cart/change.js',
+data: {
+quantity:0,
+id: 40823093592125
+},
+dataType: 'json',
+success: function() {
+location.href = '/cart';
+}
+});
+  
+}
+
+
+
+$(document).on("click","#quantity__button" ,function(){
+  setTimeout(function(){
+var cart_price = $(".totals__total-value").attr("total");
+    // alert(cart_price);
+var max_price = "$3,000.00 USD"
+if (cart_price > max_price){
+$.ajax({
+type: 'POST',
+url: '/cart/add.js',
+data: {
+quantity:1,
+id: 40823093592125
+},
+dataType: 'json',
+success: function() {
+location.href = '/cart';
+}
+});
+}
+else{
+$.ajax({
+type: 'POST',
+url: '/cart/change.js',
+data: {
+quantity:0,
+id: 40823093592125
+},
+dataType: 'json',
+success: function() {
+location.href = '/cart';
+}
+});
+  
+}
+    }, 1500);
+});
+}
